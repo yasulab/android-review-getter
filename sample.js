@@ -1,6 +1,7 @@
 var page = new WebPage(),
 // url = 'http://localhost/a-search-form',
     url = 'https://play.google.com/store/apps/details?id=org.sorarier.whistle',
+//    url = 'https://play.google.com/store/apps/details?id=org.sorarier.whistle&hl=ja'
     stepIndex = 0;
 
 /**
@@ -49,7 +50,8 @@ function initialize() {
     page.evaluate(function() {
 	    // $('form#search input.query').val('Jebus saves');
 	    // $('form#search').submit();
-	    $('a[data-tabbarid]').click()
+	    //$('a[data-tabbarid]').click()
+	    $('a.tabBarLink').click()
 	    console.log('Searching...');
 	});
     // Phantom state doesn't change between page reloads
@@ -61,7 +63,8 @@ function initialize() {
 function parseResults() {
     page.evaluate(function() {
 	    //$('div.doc-review').each(function(index, link) {
-	    $('p.review-text').each(function(index, link) {
+	    //$('p.review-text').each(function(index, link) {
+	    $('h4.review-title').each(function(index, link) {
 		    console.log($(link).text());
 		})
 		console.log('Parsed results');
